@@ -1,4 +1,5 @@
 example/*.exe
+example/*.dll
 
 # Build Results
 [Bb]in/
