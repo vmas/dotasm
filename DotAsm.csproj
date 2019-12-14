@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackAsTool>true</PackAsTool>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp2.2;netcoreapp3.0</TargetFrameworks>
+    <ToolCommandName>dotnet-asm</ToolCommandName>
+    <Version>1.0.0.0</Version>
+    <Description>IL Tools for .NET Core</Description>
+    <PackageLicenseUrl>https://github.com/vmas/dotasm/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageId>DotAsm</PackageId>
+    <PackageTags>ildasm, ildasm, cil, msil</PackageTags>
+    <Authors></Authors>
+    <PackageProjectUrl>https://github.com/vmas/dotasm</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/vmas/dotasm</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <!--RuntimeIdentifiers>win-x86;win-x64;linux-x64</RuntimeIdentifiers-->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="runtimes\linux-x64\native\**">
+      <PackagePath>runtimes\linux-x64\native</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtimes\win-x64\native\**">
+      <PackagePath>runtimes\win-x64\native</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtimes\win-x86\native\**">
+      <PackagePath>runtimes\win-x86\native</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="packages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.ILAsm" Version="3.0.0-preview-27318-01" />
+    <PackageReference Include="Microsoft.NETCore.ILDAsm" Version="3.0.0-preview-27318-01" />
+  </ItemGroup>
+
+</Project>

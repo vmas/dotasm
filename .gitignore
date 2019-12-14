@@ -1,0 +1,22 @@
+example/*.exe
+
+# Build Results
+[Bb]in/
+[Oo]bj/
+packages/*.nupkg
+
+# IDE: Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE: Visual Studio Code
+!.vscode/
+
+# IDE: IDEA family
+.idea
+
+# IDE: Xamarin Studio (MonoDevelop)
+*.userprefs
