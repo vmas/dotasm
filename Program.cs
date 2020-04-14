@@ -146,6 +146,8 @@ namespace DotAsm
 				return GetLibraryPathWindows();
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 				return GetLibraryPathLinux();
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+				return GetLibraryPathMacOS();
 			throw new PlatformNotSupportedException();
 		}
 
@@ -168,6 +170,20 @@ namespace DotAsm
 				if (line.Contains("libcoreclr.so"))
 				{
 					return line.Substring(line.IndexOf('/'));
+				}
+			}
+			return null;
+		}
+
+		private static string GetLibraryPathMacOS()
+		{
+			uint count = OSXNativeMethods._dyld_image_count();
+			for (uint i = 0; i < count; i++)
+			{
+				string imagePath = Marshal.PtrToStringAuto(OSXNativeMethods._dyld_get_image_name(i));
+				if (imagePath.EndsWith("libcoreclr.dylib"))
+				{
+					return imagePath;
 				}
 			}
 			return null;
